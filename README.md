@@ -6,7 +6,7 @@ https://qiita.com/A-Kira/items/1c55ef689c0f91420e81 <br>
 
 Laravelの教本である青本、緑本を手を動かしながら学ぶためのdocker-laravel-templateである。 <br>
 また、git操作に慣れるために、リポジトリも作成しつつ進めている。
-
+また、make upした後、composer installをすること。
 
 ### dockerの起動
 make up
