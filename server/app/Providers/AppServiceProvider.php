@@ -22,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
         //     return $myservicemakewith;
         // });
 
+        // MyServiceInterfaceをbindで結合する。具体的な実装はMyServiceMakeWithクラスでやる。という意味。
         app()->bind('App\MyClasses\MyServiceInterface','App\MyClasses\MyServiceMakeWith');
     }
 }
