@@ -7,12 +7,17 @@ class MyServiceMakeWith
   private $msg = 'no id....';
   private $data = ['Hello','Welcome','Bye'];
 
-  public function __construct(int $id = -1)
+  public function __construct()
   {
-    if($id >= 0)
+    //引数を無しに変更
+  }
+
+  public function setId($id)
+  {
+    $this->id = $id;
+    if ($id >=0 && $id < count($this->data))
     {
-      $this->id = $id;
-      $this->msg = $this->data[$id];
+      $this->msg = 'id:' . $id . ' data:' . $this->data[$id];
     }
   }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\MyClasses\MyService;
+use App\MyClasses\MyServiceMakeWith;
 
 // サービスコンテナの勉強用コントローラー
 class ServiceStudyController extends Controller
@@ -23,9 +24,9 @@ class ServiceStudyController extends Controller
     // }
 
     // 引数有りでインスタンスを取得
-    public function index(int $id = 1)
+    public function index(MyServiceMakeWith $myservicemakewith, int $id = -1)
     {
-        $myservicemakewith = app()->makeWith('App\MyClasses\MyServiceMakeWith', ['id'=>$id]);
+        $myservicemakewith->setId($id);
         $data = [
             'msg' => $myservicemakewith->say($id),
             'data'=> $myservicemakewith->alldata()

@@ -3,26 +3,23 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use AppMyClassesMyServiceMakeWith;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
+
     public function register()
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
+
     public function boot()
     {
-        //
+        app()->bind('AppMyClassesMyServiceMakeWith', function($app) {
+            $myservicemakewith = new MyServiceMakeWith();
+            $myservicemakewith->sendId(0);
+            return $myservicemakewith;
+        });
     }
 }
