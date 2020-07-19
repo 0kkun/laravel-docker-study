@@ -1,4 +1,5 @@
 <?php
+
 namespace App\MyClasses;
 
 class MyServiceMakeWith implements MyServiceInterface
