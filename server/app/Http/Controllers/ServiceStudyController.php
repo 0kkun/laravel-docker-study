@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\MyClasses\MyService;
-use App\MyClasses\MyServiceMakeWith;
+use App\MyClasses\MyServiceInterface;
+
 
 // サービスコンテナの勉強用コントローラー
 class ServiceStudyController extends Controller
@@ -23,13 +24,16 @@ class ServiceStudyController extends Controller
     //     return view('ServiceStudy.index', $data);
     // }
 
-    // 引数有りでインスタンスを取得
-    public function index(MyServiceMakeWith $myservicemakewith, int $id = -1)
+    function __construct()
     {
-        $myservicemakewith->setId($id);
+    }
+    
+    public function index(MyServiceInterface $myservice, int $id = -1)
+    {
+        $myservice->setId($id);
         $data = [
-            'msg' => $myservicemakewith->say($id),
-            'data'=> $myservicemakewith->alldata()
+            'msg' => $myservice->say($id),
+            'data'=> $myservice->alldata()
         ];
         return view('ServiceStudy.index', $data);
     }

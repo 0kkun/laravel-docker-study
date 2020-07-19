@@ -1,7 +1,7 @@
 <?php
 namespace App\MyClasses;
 
-class MyServiceMakeWith
+class MyServiceMakeWith implements MyServiceInterface
 {
   private $id = -1;
   private $msg = 'no id....';

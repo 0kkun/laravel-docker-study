@@ -16,10 +16,12 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        app()->bind('AppMyClassesMyServiceMakeWith', function($app) {
-            $myservicemakewith = new MyServiceMakeWith();
-            $myservicemakewith->sendId(0);
-            return $myservicemakewith;
-        });
+        // app()->bind('App\MyClasses\MyService\MakeWith', function($app) {
+        //     $myservicemakewith = new MyServiceMakeWith();
+        //     $myservicemakewith->sendId(0);
+        //     return $myservicemakewith;
+        // });
+
+        app()->bind('App\MyClasses\MyServiceInterface','App\MyClasses\MyServiceMakeWith');
     }
 }
