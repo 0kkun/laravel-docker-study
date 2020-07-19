@@ -8,3 +8,6 @@ Route::post('dbstudy/add', 'DBStudyController@create');
 
 Route::get('dbstudy/edit', 'DBStudyController@edit');
 Route::post('dbstudy/edit', 'DBStudyController@update');
+
+
+Route::get('/ServiceStudy', 'ServiceStudyController@index')->name('ServiceStudy');
