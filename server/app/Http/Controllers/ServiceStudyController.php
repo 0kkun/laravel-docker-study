@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\MyClasses\MyService;
 use App\MyClasses\MyServiceInterface;
+use App\Person;
 
 
 // サービスコンテナの勉強用コントローラー
@@ -28,14 +29,30 @@ class ServiceStudyController extends Controller
     {
     }
     
-    public function index(MyServiceInterface $myservice, int $id = -1)
+    public function index(MyServiceInterface $myservice, Request $request)
     {
-        $myservice->setId($id);
+        // $myservice->setId($id);
+        // $data = [
+        //     'msg' => $myservice->say($id),
+        //     'data'=> $myservice->alldata()
+        // ];
+
+        $msg = 'show people record';
+        $result = Person::get();
+
         $data = [
-            'msg' => $myservice->say($id),
-            'data'=> $myservice->alldata()
+            'msg' => $msg,
+            'data' => $result,
         ];
         return view('ServiceStudy.index', $data);
     }
 
+    public function json($id = -1)
+    {
+        if($id == -1) { 
+            return Person::get()->toJson();
+        } else {
+            return Person::find($id)->toJson();
+        }
+    }
 }

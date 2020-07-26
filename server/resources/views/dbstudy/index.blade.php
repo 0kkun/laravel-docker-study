@@ -13,7 +13,7 @@
     <tr>
       <th>id:</th><th>username:</th><th>mail:</th><th>age:</th>
     </tr>
-    @foreach($items as $item)
+    @foreach($data as $item)
     <tr>
       <td>{{$item->id}}</td>
       <td>{{$item->username}}</td>
