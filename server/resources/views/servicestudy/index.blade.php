@@ -8,13 +8,11 @@
 @section('content')
 
 
-  <p>{!!$msg!!}</p>
   <ul>
-  @foreach($data as $datum)
-  <li>{!!$datum!!}</li>  
-  @endforeach
+    @foreach($data as $item)
+        <li>{{ $item->username }}</li>
+    @endforeach
   </ul>
-
 
 @endsection
 @section('footer')

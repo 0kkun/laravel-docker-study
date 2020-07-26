@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\MyClasses\MyService;
 use App\MyClasses\MyServiceInterface;
 use App\Person;
-
+use App\Jobs\MyJob;
 
 // サービスコンテナの勉強用コントローラー
 class ServiceStudyController extends Controller
@@ -29,23 +29,36 @@ class ServiceStudyController extends Controller
     {
     }
     
-    public function index(MyServiceInterface $myservice, Request $request)
-    {
+    // public function index()
+    // {
         // $myservice->setId($id);
         // $data = [
         //     'msg' => $myservice->say($id),
         //     'data'=> $myservice->alldata()
         // ];
 
-        $msg = 'show people record';
-        $result = Person::get();
+        // Eloquentを使ったデータ取得
+        // $msg = 'show people record';
+        // $result = Person::get();
 
-        $data = [
-            'msg' => $msg,
-            'data' => $result,
-        ];
-        return view('ServiceStudy.index', $data);
-    }
+        // $data = [
+        //     'msg' => $msg,
+        //     'data' => $result,
+        // ];
+
+        // ジョブを実行する
+    //     MyJob::dispatch();
+    //     $msg = 'show people record';
+    //     $result = Person::get();
+
+    //     $data = [
+    //         'input' => '',
+    //         'msg' => $msg,
+    //         'data' => $result,
+    //     ];
+
+    //     return view('ServiceStudy.index', $data);
+    // }
 
     public function json($id = -1)
     {
@@ -54,5 +67,21 @@ class ServiceStudyController extends Controller
         } else {
             return Person::find($id)->toJson();
         }
+    }
+
+    public function index($id = null) {
+        if ($id !== null) {
+            $person = Person::find($id);
+        } else {
+            $person = null;
+        }
+
+        if ($person != null) {
+            MyJob::dispatch($person)->delay(now()->addMinutes(1));
+        }
+
+        $data = Person::all();
+
+        return view('ServiceStudy.index', compact('data'));
     }
 }
