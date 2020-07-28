@@ -77,7 +77,7 @@ class ServiceStudyController extends Controller
         }
 
         if ($person != null) {
-            MyJob::dispatch($person)->delay(now()->addMinutes(1));
+            MyJob::dispatch($person);
         }
 
         $data = Person::all();

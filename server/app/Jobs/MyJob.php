@@ -12,6 +12,7 @@ use App\Person;
 class MyJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    protected $person;
 
 
     public function __construct(Person $person)
